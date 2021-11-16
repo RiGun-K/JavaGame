@@ -11,6 +11,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 
+/*
+ * 게임 화면 + 키 설정에 대한 클래스 
+ */
 public class ShootingGame extends JFrame {
 	
     private Image bufferImage;
@@ -19,7 +22,7 @@ public class ShootingGame extends JFrame {
     // 화면 순서 
     private Image mainScreen = new ImageIcon("src/images/main2.png").getImage();
     private Image loadingScreen = new ImageIcon("src/images/roading.jfif").getImage();
-    private Image gameScreen = new ImageIcon("src/images/main2.gif").getImage();
+    private Image gameScreen = new ImageIcon("src/images/gameimage3.gif").getImage();
 
     private boolean isMainScreen, isLoadingScreen, isGameScreen;
 

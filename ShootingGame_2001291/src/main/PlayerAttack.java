@@ -4,6 +4,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+// 플레이어의 공격 이미지 , 좌표 값 설정 
 public class PlayerAttack {
 	  Image image = new ImageIcon("src/images/player_attack.png").getImage();
 	    int x, y;
