@@ -15,7 +15,7 @@ public class Game extends Thread {
     private int cnt;
     private int score;
 
-    private Image player = new ImageIcon("src/images/java.png").getImage();
+    private Image player = new ImageIcon("src/images/java.jpg").getImage();
 
     private int playerX, playerY;
     private int playerWidth = player.getWidth(null);
