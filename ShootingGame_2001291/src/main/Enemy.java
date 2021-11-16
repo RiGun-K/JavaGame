@@ -4,6 +4,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+// 적 공격 이미지 + 좌표 값 
 public class Enemy {
     Image image = new ImageIcon("src/images/spring.png").getImage();
     int x, y;
