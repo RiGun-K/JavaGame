@@ -1,5 +1,6 @@
 package database;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,31 +13,32 @@ public class LoginGame extends JFrame {
 	
 	public LoginGame() {
 		JPanel panel = new JPanel();
+		JLabel Welcome = new JLabel("Please Login Your Account!!");
+		Welcome.setFont(new Font("Arial Black", Font.BOLD, 25));
+		Welcome.setBounds(262, 27, 459, 53);
 		JLabel label = new JLabel("ID : ");
 		JLabel pw = new JLabel("PW : ");
 		
 		JTextField twtID = new JTextField(10);
 		JPasswordField twtPW = new JPasswordField(10);
+		
 		JButton button = new JButton("Login");
+		button.setFont(new Font("Lato", Font.BOLD, 20));
 		
 		panel.add(label);
 		panel.add(twtID);
 		panel.add(pw);
 		panel.add(twtPW);
 		panel.add(button);
-		
+		panel.add(Welcome);
 		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String id = "admin";
-				String pw = "admin";
+				String id = twtID.getText();
+				String pw = twtPW.getText();
 				
 				
-				if(id.equals(twtID.getText())&&pw.equals(twtPW.getText())) {
-					JOptionPane.showMessageDialog(null, "로그인 성공");
-				} else {
-					JOptionPane.showMessageDialog(null, "로그인 실패");
-				}
+				
 			}
 		});
 				

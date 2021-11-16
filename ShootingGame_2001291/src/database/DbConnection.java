@@ -7,14 +7,33 @@ import java.io.*;
 
 public class DbConnection {
 	
-	static Connection con = null;
 	private static ResultSet rs;
 	private static final String ID = "root";
 	private static final String PW = "4238";
 	private static final String URL = "jdbc:mariadb://127.0.0.1:3306/javagame";
 	private static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
 	
-	public static void main(String[] args) {
+	public static void insertTable(String id, String pw) {
+		try {
+			Class.forName(JDBC_DRIVER);
+			Connection con2 = DriverManager.getConnection(URL,ID,PW);
+			PreparedStatement insert = con2.prepareStatement (""
+					+ "INSERT INTO users"
+					+ "VALUES"
+					+ "('"+id+"','"+pw+"')");
+			
+			insert.executeUpdate();
+			System.out.println("데이터가 저장되었습니다.");
+		} 
+		
+		catch (Exception e) {
+			System.out.println("실패");
+			e.printStackTrace();
+			
+		}
+	}
+	
+	public static void selectTable() {
 			
 		try {
 			Class.forName(JDBC_DRIVER);
@@ -31,7 +50,7 @@ public class DbConnection {
 			}
 				
 			
-		}
+		} 
 		
 		catch (Exception e) {
 			System.out.println("실패");
@@ -39,6 +58,10 @@ public class DbConnection {
 			
 		}
 		
+	}
 		
+	public static void main(String[] args) {
+//		selectTable();
+		insertTable("id","pw");
 	}
 }
