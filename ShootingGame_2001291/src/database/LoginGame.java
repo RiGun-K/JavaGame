@@ -12,6 +12,10 @@ public class LoginGame extends JFrame {
 
 	
 	public LoginGame() {
+		
+		// DB 연동
+		DBConnection connection = new DBConnection();
+		
 		JPanel panel = new JPanel();
 		JLabel Welcome = new JLabel("Please Login Your Account!!");
 		Welcome.setFont(new Font("Arial Black", Font.BOLD, 25));
@@ -19,7 +23,7 @@ public class LoginGame extends JFrame {
 		JLabel label = new JLabel("ID : ");
 		JLabel pw = new JLabel("PW : ");
 		
-		JTextField twtID = new JTextField(10);
+		JTextField twtID = new JTextField();
 		JPasswordField twtPW = new JPasswordField(10);
 		
 		JButton button = new JButton("Login");
@@ -33,12 +37,13 @@ public class LoginGame extends JFrame {
 		panel.add(Welcome);
 		
 		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				String id = twtID.getText();
 				String pw = twtPW.getText();
 				
 				
-				
+				connection.insertTable(id, pw);
+				JOptionPane.showMessageDialog(null, "DB saved your account!!");
 			}
 		});
 				
