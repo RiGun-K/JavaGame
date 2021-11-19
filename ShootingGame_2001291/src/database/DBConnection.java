@@ -5,7 +5,7 @@ import java.io.*;
 import java.sql.*;
 import java.io.*;
 
-public class DbConnection {
+public class DBConnection {
 	
 	private static ResultSet rs;
 	private static final String ID = "root";
@@ -62,6 +62,6 @@ public class DbConnection {
 		
 	public static void main(String[] args) {
 //		selectTable();
-		insertTable("id","pw");
+		
 	}
 }
