@@ -52,6 +52,7 @@ public class ShootingGame extends JFrame {
         backgroundMusic = new Audio("src/audio/menuBGM.wav", true);
         backgroundMusic.start();
 
+        // 컴포넌트에 키 이벤트 리스너를 등록
         addKeyListener(new KeyListener());
     }
     
@@ -59,6 +60,11 @@ public class ShootingGame extends JFrame {
         isMainScreen = false;
         isLoadingScreen = true;
 
+        // 자바 타이머 클래스
+        /* 
+         * Timer = 실제 타이머의 기능을 수행
+         * TimerTask = Timer 가 수행할 내용 작성
+         */
         Timer loadingTimer = new Timer();
         TimerTask loadingTask = new TimerTask() {
             @Override
@@ -69,6 +75,7 @@ public class ShootingGame extends JFrame {
                 game.start();
             }
         };
+        // 3초뒤에 설정한 run 메소드 수행한다.
         loadingTimer.schedule(loadingTask, 3000);
     }
 
@@ -93,7 +100,11 @@ public class ShootingGame extends JFrame {
         this.repaint();
     }
 
+    // 버튼이 클릭되거나 리스트, 메뉴 등이 선택되었을 때 발생하는 이벤트
+    // ActionListener 인터페이스의 actionPerformed(ActionEvent) 메서드를 이용해서 처리
+    
     class KeyListener extends KeyAdapter {
+    	// 키가 눌러지면 호출
         public void keyPressed(KeyEvent e) {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_W:
@@ -122,7 +133,8 @@ public class ShootingGame extends JFrame {
                     break;
             }
         }
-
+        
+        // 키에서 뗄 때 호출
         public void keyReleased(KeyEvent e) {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_W:
