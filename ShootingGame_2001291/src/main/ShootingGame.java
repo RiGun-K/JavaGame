@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 /*
  * 게임 화면 + 키 설정에 대한 클래스 
  */
+
 public class ShootingGame extends JFrame {
 	
     private Image bufferImage;
@@ -25,6 +26,7 @@ public class ShootingGame extends JFrame {
     private Image loadingScreen = new ImageIcon("src/images/roading.jfif").getImage();
     private Image gameScreen = new ImageIcon("src/images/gameimage3.gif").getImage();
 
+    // boolean 변수로 화면전환 설정
     private boolean isMainScreen, isLoginScreen, isLoadingScreen, isGameScreen;
 
     // 
@@ -45,6 +47,7 @@ public class ShootingGame extends JFrame {
         init();
     }
     
+    // 초기화 메소드
     private void init() {
         isMainScreen = true;
         isLoginScreen = false;
@@ -59,28 +62,25 @@ public class ShootingGame extends JFrame {
         addKeyListener(new KeyListener());
     }
     
+    // 로그인화면
     private void loginStart() {
         isMainScreen = false;
         isLoginScreen = true;
-
-        // 자바 타이머 클래스
-        /* 
-         * Timer = 실제 타이머의 기능을 수행
-         * TimerTask = Timer 가 수행할 내용 작성
+        
+        /*
+         * 11/22 
+         * 1) 이 화면에서 로그인 회원가입을 구현
+         * 2) 로그인 버튼 이벤트 발생시(로그인 될 경우) gameStart()로 화면전환 
+         * 3) 게임시작시 스코어를 축적하여 DB에 저장하여야 함 ! 
+         * 4) 게임종료시 스코어가 높은순으로 화면에 랭킹 띄워야함 ! 
+         * 
+         * 그외) 각각의 물체들 이미지 전환
+         *    ) 총 이미지,사운드 등 수정
          */
-        Timer loadingTimer = new Timer();
-        TimerTask loadingTask = new TimerTask() {
-            @Override
-            public void run() {
-                isLoginScreen = false;
-                isLoadingScreen = true;
-                game.start();
-            }
-        };
-        // 3초뒤에 설정한 run 메소드 수행한다.
-        loadingTimer.schedule(loadingTask, 3000);
+
     }
     
+    // 게임화면
     private void gameStart() {
         isLoginScreen = false;
         isLoadingScreen = true;
@@ -154,8 +154,11 @@ public class ShootingGame extends JFrame {
                     game.setShooting(true);
                     break;
                 case KeyEvent.VK_ENTER:
-                    if (isLoginScreen) loginStart();
+                    if (isMainScreen) {
+                    	loginStart();
+                    }
                     break;
+                // ESC 키 -> 종료 
                 case KeyEvent.VK_ESCAPE:
                     System.exit(0);
                     break;

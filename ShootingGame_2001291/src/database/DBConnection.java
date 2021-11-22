@@ -13,12 +13,13 @@ public class DBConnection {
 	private static final String URL = "jdbc:mariadb://127.0.0.1:3306/javagame";
 	private static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
 	
-	public static void insertTable(String id, String pw) {
+	public static void insertTable(String id, Object pw) {
 		try {
 			Class.forName(JDBC_DRIVER);
-			Connection con2 = DriverManager.getConnection(URL,ID,PW);
-			PreparedStatement insert = con2.prepareStatement (""
+			Connection con = DriverManager.getConnection(URL,ID,PW);
+			PreparedStatement insert = con.prepareStatement (""
 					+ "INSERT INTO users"
+					+ "(id, pw)"
 					+ "VALUES"
 					+ "('"+id+"','"+pw+"')");
 			
@@ -62,6 +63,6 @@ public class DBConnection {
 		
 	public static void main(String[] args) {
 //		selectTable();
-		
+		insertTable("리건","관리자");
 	}
 }
