@@ -34,20 +34,22 @@ public class DBConnection {
 		}
 	}
 	
+	// 플레이 시간도 있으면 좋을듯 .. 
 	public static void selectTable() {
 			
 		try {
 			Class.forName(JDBC_DRIVER);
 			Connection con = DriverManager.getConnection(URL,ID,PW);
-			String sql = "select * from users";
+			String sql = "select * from users ORDER BY `score` DESC";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				String id = rs.getString("id");
 				String pw = rs.getString("pw");
+				String score = rs.getString("score");
 				
-				System.out.println("아이디 :"+ id + " 비밀번호 :"+ pw);
+				System.out.println("아이디 :"+ id + " 비밀번호 :"+ pw + " 점수 :"+ score);
 			}
 				
 			
@@ -62,7 +64,7 @@ public class DBConnection {
 	}
 		
 	public static void main(String[] args) {
-//		selectTable();
-		insertTable("리건","관리자");
+		selectTable();
+//		insertTable("리건","관리자");
 	}
 }

@@ -10,6 +10,7 @@ import main.ShootingGame;
 
 
 
+
 public class LoginGame extends JFrame {
 
 	private JTextField id;
@@ -57,7 +58,7 @@ public class LoginGame extends JFrame {
 				db.insertTable(idTxt, pwTxt);
 				JOptionPane.showMessageDialog(null, "Your data has been saved successfully");
 				panel.setVisible(false);
-//				mainScreen.setVisible(true);
+		        boolean isLoginScreen = true;
 				}
 		});
 				

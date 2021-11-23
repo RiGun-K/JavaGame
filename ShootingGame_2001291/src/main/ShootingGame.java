@@ -10,6 +10,8 @@ import java.util.TimerTask;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import database.LoginGame;
+
 
 /*
  * 게임 화면 + 키 설정에 대한 클래스 
@@ -28,7 +30,6 @@ public class ShootingGame extends JFrame {
 
     // boolean 변수로 화면전환 설정
     private boolean isMainScreen, isLoginScreen, isLoadingScreen, isGameScreen;
-
     // 
     private Game game = new Game();
 
@@ -44,6 +45,7 @@ public class ShootingGame extends JFrame {
         setVisible(true);
         setLayout(null);
 
+        // LoginGame 클래스 받아옴
         init();
     }
     
@@ -65,8 +67,9 @@ public class ShootingGame extends JFrame {
     // 로그인화면
     private void loginStart() {
         isMainScreen = false;
-        isLoginScreen = true;
-        
+//        isLoginScreen = true;
+
+        login();
         /*
          * 11/22 
          * 1) 이 화면에서 로그인 회원가입을 구현
@@ -80,7 +83,16 @@ public class ShootingGame extends JFrame {
 
     }
     
-    // 게임화면
+    private void login() {
+		// TODO Auto-generated method stub
+
+        LoginGame login = new LoginGame();
+		
+		
+        
+	}
+
+	// 게임화면
     private void gameStart() {
         isLoginScreen = false;
         isLoadingScreen = true;
@@ -115,9 +127,12 @@ public class ShootingGame extends JFrame {
         if (isMainScreen) {
             g.drawImage(mainScreen, 0, 0, null);
         }
-        if (isLoginScreen) {
-            g.drawImage(loginScreen, 0, 0, null);
-        }
+//        if (isLogin) {
+//        	g.drawImage(login(), 0, 0, null);
+//        }
+//        if (isLoginScreen) {
+//            g.drawImage(loginScreen, 0, 0, null);
+//        }
         if (isLoadingScreen) {
             g.drawImage(loadingScreen, 0, 0, null);
         }
@@ -155,7 +170,8 @@ public class ShootingGame extends JFrame {
                     break;
                 case KeyEvent.VK_ENTER:
                     if (isMainScreen) {
-                    	loginStart();
+//                    	loginStart();
+                    	login();
                     }
                     break;
                 // ESC 키 -> 종료 

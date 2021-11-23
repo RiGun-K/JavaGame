@@ -152,6 +152,7 @@ public class Game extends Thread {
         infoDraw(g);
     }
 
+    // 스코어 점수 표시
     public void infoDraw(Graphics g) {
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 40));
@@ -160,6 +161,7 @@ public class Game extends Thread {
             g.setColor(Color.BLACK);
             g.setFont(new Font("Arial", Font.BOLD, 80));
             g.drawString("Press R to restart", 295, 380);
+            // 랭킹 점수표시 
         }
     }
 
