@@ -3,6 +3,7 @@ package database;
 import java.net.*;
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
 import java.io.*;
 
 public class DBConnection {
@@ -34,7 +35,7 @@ public class DBConnection {
 		}
 	}
 	
-	// 플레이 시간도 있으면 좋을듯 .. 
+	// 그냥 단순 조회용 
 	public static void selectTable() {
 			
 		try {
@@ -62,9 +63,45 @@ public class DBConnection {
 		}
 		
 	}
+	
+	public static String[][] getRank() {
+		try {
+			Class.forName(JDBC_DRIVER);
+			Connection con = DriverManager.getConnection(URL,ID,PW);
+			String sql = "select * from users ORDER BY `score` DESC";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			
+			ArrayList<String[]> list = new ArrayList<String[]>();
+			
+			
+			while(rs.next()) {
+				list.add(new String[] {
+						rs.getString("id"),
+						rs.getString("pw"),
+						rs.getString("score")
+				});
+				
+				System.out.println("The data has been fetched");
+				
+				String[][] arr = new String[list.size()][3];
+				return list.toArray(arr);
+			}
+				
+			
+		} 
+		
+		catch (Exception e) {
+			System.out.println("실패");
+			e.printStackTrace();
+			
+		}
+		return getRank();
+	}
 		
 	public static void main(String[] args) {
-		selectTable();
+//		selectTable();
 //		insertTable("리건","관리자");
+	
 	}
 }
