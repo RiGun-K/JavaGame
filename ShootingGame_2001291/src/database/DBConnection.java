@@ -68,7 +68,7 @@ public class DBConnection {
 		try {
 			Class.forName(JDBC_DRIVER);
 			Connection con = DriverManager.getConnection(URL,ID,PW);
-			String sql = "select * from users ORDER BY `score` DESC";
+			String sql = "SELECT id, score FROM users ORDER BY score DESC";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
@@ -78,30 +78,31 @@ public class DBConnection {
 			while(rs.next()) {
 				list.add(new String[] {
 						rs.getString("id"),
-						rs.getString("pw"),
 						rs.getString("score")
 				});
 				
-				System.out.println("The data has been fetched");
+				System.out.println(list);
 				
-				String[][] arr = new String[list.size()][3];
+				String[][] arr = new String[list.size()][2];
 				return list.toArray(arr);
-			}
 				
+			}
+				rs.close();
+				pstmt.close();
+				con.close();
 			
-		} 
+			} catch (Exception e) {
+				System.out.println("실패");
+				e.printStackTrace();
+			
+			}
+			return getRank();
 		
-		catch (Exception e) {
-			System.out.println("실패");
-			e.printStackTrace();
-			
 		}
-		return getRank();
-	}
 		
 	public static void main(String[] args) {
 //		selectTable();
 //		insertTable("리건","관리자");
-	
+		getRank();
 	}
 }
