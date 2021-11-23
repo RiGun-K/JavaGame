@@ -4,6 +4,9 @@ import java.net.*;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+
+import javax.swing.JTextField;
+
 import java.io.*;
 
 public class DBConnection {
@@ -29,6 +32,30 @@ public class DBConnection {
 		} 
 		
 		catch (Exception e) {
+			System.out.println("실패");
+			e.printStackTrace();
+			
+		}
+	}
+	
+	public static void insertScore(JTextField id, int score) {
+		try {
+			Class.forName(JDBC_DRIVER);
+			Connection con = DriverManager.getConnection(URL,ID,PW);
+			PreparedStatement insert = con.prepareStatement (""
+					+ "UPDATE users"
+					+ "SET"
+					+ "score=" + score 
+					+ "WHERE id=" + id);
+			
+//			UPDATE `users` SET score=9002 WHERE id='hi';
+			
+			insert.executeUpdate();
+			System.out.println("데이터가 저장되었습니다.");
+		} 
+		
+		catch (Exception e) {
+			// 11/23 죽었을때 SQL 문 실행되는데 오류남 ! 
 			System.out.println("실패");
 			e.printStackTrace();
 			

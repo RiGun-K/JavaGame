@@ -13,8 +13,9 @@ import main.ShootingGame;
 
 public class LoginGame extends JFrame {
 
-	private JTextField id;
+	public JTextField id;
 	private JPasswordField pw;
+	
 	
 	public LoginGame() {
 		
@@ -56,10 +57,16 @@ public class LoginGame extends JFrame {
 				
 				// 입력받은 값을 DBConnection insert 클래스 에 넘김
 				db.insertTable(idTxt, pwTxt);
-				JOptionPane.showMessageDialog(null, "Your data has been saved successfully");
-				panel.setVisible(false);
-		        boolean isLoginScreen = true;
-				}
+				JOptionPane.showMessageDialog(null, "회원가입 성공!!");
+				
+				dispose();	// 요고만 종료
+				
+//				System.exit(0);	// 전체가 종료됨
+				
+				// 시작버튼 누르면 gameStart( )가 실행되도록 
+				
+				// 우선은 K 를누르면 넘어가도록 하였음
+			}
 		});
 				
 		add(panel);
@@ -74,9 +81,33 @@ public class LoginGame extends JFrame {
 
 	
 	   
-		public static void main(String[] args) {
-			LoginGame lg = new LoginGame();
+		public JTextField getId() {
+		return id;
+	}
+
+
+
+	public void setId(JTextField id) {
+		this.id = id;
+	}
+
+
+
+	public JPasswordField getPw() {
+		return pw;
+	}
+
+
+
+	public void setPw(JPasswordField pw) {
+		this.pw = pw;
+	}
+
+
+
+	public static void main(String[] args) {
+		LoginGame lg = new LoginGame();
 			
-		}
+	}
 
 }

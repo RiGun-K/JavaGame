@@ -10,7 +10,9 @@ import java.util.TimerTask;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import database.DBConnection;
 import database.LoginGame;
+import database.Rank2;
 
 
 /*
@@ -18,6 +20,9 @@ import database.LoginGame;
  */
 
 public class ShootingGame extends JFrame {
+	
+	// DB 끌고오기
+	DBConnection db = new DBConnection();
 	
     private Image bufferImage;
     private Graphics screenGraphic;
@@ -87,12 +92,15 @@ public class ShootingGame extends JFrame {
 		// TODO Auto-generated method stub
 
         LoginGame login = new LoginGame();
-		
-		
         
 	}
+    
+    private void rank2() {
+    	Rank2 rank2 = new Rank2();
+    }
 
 	// 게임화면
+    // 메인화면에서 K 누르면 이동
     private void gameStart() {
         isLoginScreen = false;
         isLoadingScreen = true;
@@ -163,8 +171,15 @@ public class ShootingGame extends JFrame {
                     game.setRight(true);
                     break;
                 case KeyEvent.VK_R:
-                    if (game.isOver()) game.reset();
+                    if (game.isOver()) 
+                    	game.reset();
+//                    	rank2();
                     break;
+                case KeyEvent.VK_K:
+                	if (isMainScreen) {
+                		gameStart();
+                		break;
+                	}
                 case KeyEvent.VK_SPACE:
                     game.setShooting(true);
                     break;

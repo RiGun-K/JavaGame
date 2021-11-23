@@ -8,7 +8,15 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import database.DBConnection;
+import database.LoginGame;
+import database.Rank2;
+
 public class Game extends Thread {
+	
+	// DB 끌고오기
+	DBConnection db = new DBConnection();
+	LoginGame lg = new LoginGame();
 
     private int delay = 20;
     private long pretime;
@@ -80,9 +88,17 @@ public class Game extends Thread {
         playerAttackList.clear();
         enemyList.clear();
         enemyAttackList.clear();
+        
+        
+        db.insertScore(lg.getId(), score);
+        rank2();
     }
 
-    private void keyProcess() {
+    private void rank2() {
+    	Rank2 rank2 = new Rank2();
+    }
+
+	private void keyProcess() {
         if (up && playerY - playerSpeed > 0) playerY -= playerSpeed;
         if (down && playerY + playerHeight + playerSpeed < Main.SCREEN_HEIGHT) playerY += playerSpeed;
         if (left && playerX - playerSpeed > 0) playerX -= playerSpeed;
@@ -104,6 +120,7 @@ public class Game extends Thread {
                     enemy.hp  -= playerAttack.attack;
                     playerAttackList.remove(playerAttack);
                 }
+                // 적을 죽이면 1) 사운드 실행 2) 적 제거 3) 점수획득
                 if (enemy.hp <= 0) {
                     hitSound.start();
                     enemyList.remove(enemy);
@@ -161,7 +178,13 @@ public class Game extends Thread {
             g.setColor(Color.BLACK);
             g.setFont(new Font("Arial", Font.BOLD, 80));
             g.drawString("Press R to restart", 295, 380);
-            // 랭킹 점수표시 
+            
+            /*
+             *  게임이 끝나면 쌓은 score를 DB에 바로 저장하여 다음화면에 출력되도록해야함
+             *  게임을 시작할때 이미 DB에 INSERT 됬으므로 로그인한 사용자 ID도 같이 받아와서  
+             */
+            
+            
         }
     }
 
