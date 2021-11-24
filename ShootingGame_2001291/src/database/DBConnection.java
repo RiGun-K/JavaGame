@@ -38,15 +38,13 @@ public class DBConnection {
 		}
 	}
 	
-	public static void insertScore(JTextField id, int score) {
+	public static void insertScore(char id, int score) {
 		try {
 			Class.forName(JDBC_DRIVER);
 			Connection con = DriverManager.getConnection(URL,ID,PW);
-			PreparedStatement insert = con.prepareStatement (""
-					+ "UPDATE users"
-					+ "SET"
-					+ "score=" + score 
-					+ "WHERE id=" + id);
+			PreparedStatement insert = con.prepareStatement 
+					("UPDATE users SET score=" + score + "WHERE id=" + id);
+				
 			
 //			UPDATE `users` SET score=9002 WHERE id='hi';
 			

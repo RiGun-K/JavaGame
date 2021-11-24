@@ -89,9 +89,6 @@ public class Game extends Thread {
         enemyList.clear();
         enemyAttackList.clear();
         
-        
-        db.insertScore(lg.getId(), score);
-        rank2();
     }
 
     private void rank2() {
@@ -169,6 +166,8 @@ public class Game extends Thread {
         infoDraw(g);
     }
 
+////////////////////////////////////////////////////////////////////////////////////////
+    
     // 스코어 점수 표시
     public void infoDraw(Graphics g) {
         g.setColor(Color.WHITE);
@@ -183,11 +182,18 @@ public class Game extends Thread {
              *  게임이 끝나면 쌓은 score를 DB에 바로 저장하여 다음화면에 출력되도록해야함
              *  게임을 시작할때 이미 DB에 INSERT 됬으므로 로그인한 사용자 ID도 같이 받아와서  
              */
-            
+
+            // PK를 지정하였기 때문에 기존 값을 입력하면 INSERT 라서 오류뜰듯..
+//            db.insertScore(lg.getId(), score);
+//            db.insertScore('리거니', score);
+            rank2();
             
         }
     }
 
+////////////////////////////////////////////////////////////////////////////////////////
+
+    
     public void playerDraw(Graphics g) {
         g.drawImage(player, playerX, playerY, null);
         g.setColor(Color.GREEN);
